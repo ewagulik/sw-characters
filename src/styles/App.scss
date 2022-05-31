@@ -1,0 +1,88 @@
+// NORMALIZE
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+a {
+  background-color: transparent;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+// VARIABLES
+$black: #000;
+$white: #fff;
+
+$main-background: $black;
+$primary-text-color: $white;
+$secondary-text-color: #BBB;
+$accent-color: #00FFA7;
+$spacing: 20px;
+
+$color-2: lighten($main-background, 6.5%);
+$color-3: lighten($main-background, 13.5%);
+
+
+// MIXINS
+@mixin mq-desktop {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin mq-tablet {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+// UTILITIES
+.u-visually-hidden {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+// MAIN
+body {
+  font-family: 'Lato', sans-serif ;
+}
