@@ -1,1 +1,1 @@
-export const baseUrl = 'https://swapi.dev/api/';
+export const tallDelimiter = 100;

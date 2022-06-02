@@ -1,0 +1,365 @@
+// NORMALIZE
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+a {
+  background-color: transparent;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+// VARIABLES
+$black: #000;
+$white: #fff;
+
+$primary-background: $black;
+$primary-text-color: $white;
+$secondary-text-color: #BBB;
+$accent-color: #00FFA7;
+$spacing: 20px;
+
+$secondary-background: lighten($primary-background, 6.5%);
+$tertiary-background: lighten($primary-background, 13.5%);
+
+
+// MIXINS
+@mixin desktop-up {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin mobile-up {
+  @media only screen and (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin small-desktop-up {
+  @media only screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+// UTILITIES
+.u-visually-hidden {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+.u-flex-center {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.u-flex-1 {
+  flex: 1
+}
+
+.u-white {
+  color: $white
+}
+
+.u-relative {
+  position: relative
+}
+
+// MAIN
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+
+.header {
+  height: 80px;
+  background-color: $secondary-background;
+  width: 100vw;
+  position: sticky;
+  top: 0
+}
+
+main {
+  background-color: $primary-background;
+  min-height: calc(100vh - 160px);
+  padding: $spacing 0;
+}
+
+.footer {
+  height: 80px;
+  background-color: $secondary-background;
+  width: 100vw;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $secondary-text-color
+}
+
+.content-wrapper {
+  margin: 0 $spacing;
+  width: calc(100% - 40px);
+  @include mobile-up {
+    margin: 0 auto;
+    width: 320px;
+  }
+  @include tablet-up {
+    width: 490px;
+  }
+  @include small-desktop-up {
+    width: 660px;
+  }
+}
+
+.textfield {
+  width: 100%;
+  border-radius: 8px;
+  border: 0;
+  padding-left: $spacing;
+  height: 48px;
+  background-color: $tertiary-background;
+  color: $secondary-text-color;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $accent-color;
+  }
+}
+
+.cards-list {
+  display: grid;
+  grid-gap: $spacing;
+  justify-content: center;
+  grid-template-columns: 150px 150px;
+  @include tablet-up {
+    grid-template-columns: 150px 150px 150px;
+  }
+  @include small-desktop-up {
+    grid-template-columns: 150px 150px 150px 150px;
+  }
+}
+
+.card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card--placeholder {
+  background-color: $secondary-background;
+}
+
+.card__top {
+  background-color: $tertiary-background;
+  color: $primary-text-color;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.card__bottom {
+  background-color: $secondary-background;
+  color: $accent-color;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.error-msg {
+  color: #9a0a0a;
+  text-align: center;
+  font-size: 20px;
+}
+
+.msg-wrapper {
+  min-height: calc(100vh - 280px);
+  width: 100%;
+}
+
+.loading-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  z-index: 2222;
+}
+
+.loading-skeleton::after {
+  z-index: 222222;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0.4) 44%,
+    rgba(0, 0, 0, 0.8) 56%,
+    rgba(0, 0, 0, 0)
+  );
+  animation: shimmer 2.2s infinite;
+  content: '';
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+//TOGGLE BTN
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  gap: 1ch;
+}
+
+.toggle__display {
+  --offset: 2px;
+  --diameter: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: calc(var(--diameter) * 2 + var(--offset) * 2);
+  height: calc(var(--diameter) + var(--offset) * 2);
+  box-sizing: content-box;
+
+  border: 0.1em solid rgb(0 0 0 / 0.2);
+
+  position: relative;
+  border-radius: 100vw;
+  background-color: #747474;
+
+  transition: 250ms;
+  cursor: pointer;
+}
+
+.toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.toggle__display::before {
+  content: '';
+
+  width: var(--diameter);
+  height: var(--diameter);
+  border-radius: 50%;
+
+  box-sizing: border-box;
+  border: 0.1 solid rgb(0 0 0 / 0.2);
+
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: var(--offset);
+  transform: translate(0, -50%);
+
+  background-color: #fff;
+  transition: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle__display {
+    transition-duration: 0ms;
+  }
+}
+.toggle__input:focus + .toggle__display {
+  outline: none;
+  border: 1px solid $accent-color
+}
+
+.toggle__input:focus:not(:focus-visible) + .toggle__display {
+  outline: 0;
+}
+.toggle__input:checked + .toggle__display {
+  background-color: #028457;
+}
+.toggle__input:checked + .toggle__display::before {
+  transform: translate(100%, -50%);
+}
+.toggle__input:disabled + .toggle__display {
+  opacity: 0.6;
+  filter: grayscale(40%);
+  cursor: not-allowed;
+}
+[dir='rtl'] .toggle__display::before {
+  left: auto;
+  right: var(--offset);
+}
+[dir='rtl'] .toggle__input:checked + .toggle__display::before {
+  transform: translate(-100%, -50%);
+}

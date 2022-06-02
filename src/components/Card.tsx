@@ -1,11 +1,11 @@
 import React from 'react';
-import { Character } from '../types';
+import { Character } from '../types/character';
 
-const Card = ({ name, height }: Character) => {
+const Card: React.FC<Character> = ({ name, height }) => {
   return (
-    <div>
-      <div>{name}</div>
-      <div>{height}</div>
+    <div className='card'>
+      <div className='u-flex-1 u-flex-center card__top'>{height}</div>
+      <div className='u-flex-center card__bottom'>{name}</div>
     </div>
   );
 };
